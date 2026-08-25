@@ -84,6 +84,7 @@ Links centrais para avaliação e rastreabilidade:
 | GitHub Actions | [Workflows do projeto](https://github.com/gvmertens/flowguard/actions) |
 | Pull Requests | [Histórico de PRs](https://github.com/gvmertens/flowguard/pulls?q=is%3Apr+is%3Aclosed) |
 | Issues/Kanban | [Backlog rastreável](https://github.com/gvmertens/flowguard/issues?q=is%3Aissue) |
+| Professor colaborador | [wangsouza](https://github.com/wangsouza) com permissão `read` |
 | Roteiro de vídeo | [docs/VIDEO_SCRIPT.md](docs/VIDEO_SCRIPT.md) |
 | Vídeo | Pendente de gravação e upload não listado no YouTube |
 
