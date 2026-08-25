@@ -1,0 +1,6 @@
+buildId,module,ciResult,coverage,riskExpected
+B-100,catalog,PASSED,82,LOW
+B-101,auth,FAILED,55,HIGH
+B-102,payment,PASSED,58,MEDIUM
+B-103,catalog,FAILED,80,MEDIUM
+B-104,auth,FAILED,50,HIGH
