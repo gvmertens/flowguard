@@ -58,7 +58,7 @@ curl -X POST http://localhost:8080/api/v1/delivery-risk/assess -H "Content-Type:
 - Segredos são configurados apenas por ambiente.
 - `PromptInjectionGuard` bloqueia padrões hostis antes de qualquer tool.
 - O modelo recebe contexto confiável, mas a política determinística decide autonomia.
-- `RepositoryContextService` recupera ADRs e incidentes curados pelo módulo alterado. Cada item é um chunk versionado; a evolução prevista é indexá-los em pgvector sem alterar o contrato do grafo.
+- `RepositoryContextService` recupera ADRs e incidentes curados pelo módulo alterado. Cada item é um chunk versionado com fonte e tags; veja [docs/RAG_CONTEXT.md](docs/RAG_CONTEXT.md).
 - Cada execução produz log JSON e linha em `runtime/audit.jsonl`, correlacionados por `correlationId`; a resposta informa a latência.
 - A GitHub API tem timeout e fallback de fixture somente em modo de demonstração.
 
@@ -81,4 +81,3 @@ Inclua aqui, antes da submissão, os links do repositório, GitHub Project e ví
 | Repositório | A preencher |
 | GitHub Project | A preencher |
 | Vídeo | A preencher |
-
