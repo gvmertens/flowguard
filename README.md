@@ -79,6 +79,7 @@ Inclua aqui, antes da submissão, os links do repositório, GitHub Project e ví
 
 | Artefato | Link |
 | --- | --- |
-| Repositório | A preencher |
-| GitHub Project | A preencher |
-| Vídeo | A preencher |
+| Repositório | [gvmertens/flowguard](https://github.com/gvmertens/flowguard) |
+| GitHub Project | [FlowGuard — Projeto Avaliativo SCTEC](https://github.com/users/gvmertens/projects/5) |
+| Roteiro de vídeo | [docs/VIDEO_SCRIPT.md](docs/VIDEO_SCRIPT.md) |
+| Vídeo | Pendente de gravação e upload não listado no YouTube |
