@@ -75,11 +75,28 @@ Os testes E2E cobrem rota normal, risco alto com aprovação humana e prompt inj
 
 ## Entrega
 
-Inclua aqui, antes da submissão, os links do repositório, GitHub Project e vídeo não listado no YouTube.
+Links centrais para avaliação e rastreabilidade:
 
 | Artefato | Link |
 | --- | --- |
 | Repositório | [gvmertens/flowguard](https://github.com/gvmertens/flowguard) |
 | GitHub Project | [FlowGuard — Projeto Avaliativo SCTEC](https://github.com/users/gvmertens/projects/5) |
+| GitHub Actions | [Workflows do projeto](https://github.com/gvmertens/flowguard/actions) |
+| Pull Requests | [Histórico de PRs](https://github.com/gvmertens/flowguard/pulls?q=is%3Apr+is%3Aclosed) |
+| Issues/Kanban | [Backlog rastreável](https://github.com/gvmertens/flowguard/issues?q=is%3Aissue) |
 | Roteiro de vídeo | [docs/VIDEO_SCRIPT.md](docs/VIDEO_SCRIPT.md) |
 | Vídeo | Pendente de gravação e upload não listado no YouTube |
+
+Evidências principais:
+
+| Requisito | Evidência |
+| --- | --- |
+| Escopo e arquitetura | [docs/PROJECT_CHARTER.md](docs/PROJECT_CHARTER.md), [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) |
+| Grafo LangGraph4j | [DeliveryRiskService.java](src/main/java/br/com/flowguard/application/DeliveryRiskService.java), [FlowGuardState.java](src/main/java/br/com/flowguard/application/FlowGuardState.java) |
+| Tool/API GitHub | [GitHubPullRequestClient.java](src/main/java/br/com/flowguard/infrastructure/GitHubPullRequestClient.java), [PR #12](https://github.com/gvmertens/flowguard/pull/12) |
+| Memória/RAG | [docs/RAG_CONTEXT.md](docs/RAG_CONTEXT.md), [RepositoryContextService.java](src/main/java/br/com/flowguard/application/RepositoryContextService.java) |
+| Governança e segurança | [docs/GOVERNANCE.md](docs/GOVERNANCE.md), [PR #14](https://github.com/gvmertens/flowguard/pull/14) |
+| Observabilidade | [AuditService.java](src/main/java/br/com/flowguard/application/AuditService.java), [PR #11](https://github.com/gvmertens/flowguard/pull/11) |
+| QA com IA e testes | [docs/qa/AI_CODE_REVIEW.md](docs/qa/AI_CODE_REVIEW.md), [PR #15](https://github.com/gvmertens/flowguard/pull/15) |
+| CI e análise de anomalias | [docs/evidencias/DEVOPS_ANALYSIS.md](docs/evidencias/DEVOPS_ANALYSIS.md), [PR #16](https://github.com/gvmertens/flowguard/pull/16) |
+| Automação low-code n8n | [docs/LOW_CODE.md](docs/LOW_CODE.md), [PR #19](https://github.com/gvmertens/flowguard/pull/19), [Issue #18 criada pelo n8n](https://github.com/gvmertens/flowguard/issues/18) |
