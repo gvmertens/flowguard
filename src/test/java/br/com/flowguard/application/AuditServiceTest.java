@@ -30,4 +30,3 @@ class AuditServiceTest {
         assertThat(event.path("fields").path("latencyMs").asInt()).isEqualTo(12);
     }
 }
-
