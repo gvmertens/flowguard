@@ -58,13 +58,18 @@ public class GitHubPullRequestClient {
             return new PullRequestContext(
                     "github_api",
                     List.of("PR #%s em estado %s.".formatted(payload.get("number").asText(), payload.get("state").asText())));
-        } catch (IOException | InterruptedException exception) {
+        } catch (InterruptedException exception) {
             Thread.currentThread().interrupt();
-            return new PullRequestContext("fixture_fallback", List.of("GitHub indisponível; fallback documentado ativado."));
+            return fallback();
+        } catch (IOException exception) {
+            return fallback();
         }
+    }
+
+    private PullRequestContext fallback() {
+        return new PullRequestContext("fixture_fallback", List.of("GitHub indisponível; fallback documentado ativado."));
     }
 
     public record PullRequestContext(String source, List<String> evidence) {
     }
 }
-
