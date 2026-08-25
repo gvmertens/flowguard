@@ -4,11 +4,11 @@ import br.com.flowguard.api.DeliverySignal;
 import br.com.flowguard.api.RiskLevel;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 @Service
-@ConditionalOnMissingBean(RiskClassifier.class)
+@ConditionalOnProperty(prefix = "flowguard.ai", name = "enabled", havingValue = "false", matchIfMissing = true)
 public class DeterministicRiskClassifier implements RiskClassifier {
     @Override
     public Classification classify(DeliverySignal signal, List<String> context, List<String> ciFindings) {
