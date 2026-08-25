@@ -269,7 +269,7 @@
           <div class="row">
             <label>
               Repositório
-              <input id="repository" name="repository" required maxlength="80">
+              <input id="repository" name="repository" required maxlength="120" placeholder="gvmertens/flowguard ou URL do GitHub">
             </label>
             <label>
               PR
@@ -373,9 +373,18 @@
         .filter(Boolean);
     }
 
+    function normalizeRepository(value) {
+      return value
+        .trim()
+        .replace(/^https?:\/\/github\.com\//, '')
+        .replace(/\.git$/, '')
+        .replace(/[?#].*$/, '')
+        .replace(/\/$/, '');
+    }
+
     function payloadFromForm() {
       return {
-        repository: form.repository.value.trim(),
+        repository: normalizeRepository(form.repository.value),
         pullRequestId: form.pullRequestId.value.trim(),
         diffSummary: form.diffSummary.value.trim(),
         ciLogs: toList(form.ciLogs.value),
