@@ -33,7 +33,8 @@ public class GitHubPullRequestClient {
     }
 
     public PullRequestContext fetch(DeliverySignal signal) {
-        if (!REPOSITORY.matcher(signal.repository()).matches()) {
+        String repository = normalizeRepository(signal.repository());
+        if (!REPOSITORY.matcher(repository).matches()) {
             throw new IllegalArgumentException("repository deve seguir o formato owner/repository");
         }
         if (token.isBlank()) {
@@ -41,7 +42,7 @@ public class GitHubPullRequestClient {
         }
         try {
             HttpRequest request = HttpRequest.newBuilder(URI.create(
-                            "%s/repos/%s/pulls/%s".formatted(apiBaseUrl, signal.repository(), signal.pullRequestId())))
+                            "%s/repos/%s/pulls/%s".formatted(apiBaseUrl, repository, signal.pullRequestId())))
                     .header("Accept", "application/vnd.github+json")
                     .header("Authorization", "Bearer " + token)
                     .timeout(Duration.ofSeconds(3))
@@ -68,6 +69,21 @@ public class GitHubPullRequestClient {
 
     private PullRequestContext fallback() {
         return new PullRequestContext("fixture_fallback", List.of("GitHub indisponível; fallback documentado ativado."));
+    }
+
+    private String normalizeRepository(String repository) {
+        String normalized = repository.trim()
+                .replaceFirst("^https?://github\\.com/", "")
+                .replaceFirst("\\.git$", "");
+        int queryIndex = normalized.indexOf('?');
+        if (queryIndex >= 0) {
+            normalized = normalized.substring(0, queryIndex);
+        }
+        int fragmentIndex = normalized.indexOf('#');
+        if (fragmentIndex >= 0) {
+            normalized = normalized.substring(0, fragmentIndex);
+        }
+        return normalized.replaceFirst("/$", "");
     }
 
     public record PullRequestContext(String source, List<String> evidence) {

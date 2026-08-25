@@ -45,6 +45,22 @@ class GitHubPullRequestClientIntegrationTest {
     }
 
     @Test
+    void normalizesFullGitHubRepositoryUrl() {
+        server.createContext("/repos/gvmertens/flowguard/pulls/24", exchange -> {
+            authorization.set(exchange.getRequestHeaders().getFirst("Authorization"));
+            writeJson(exchange, 200, "{\"number\":24,\"state\":\"open\"}");
+        });
+        server.start();
+
+        GitHubPullRequestClient.PullRequestContext result =
+                client().fetch(signal("https://github.com/gvmertens/flowguard", "24"));
+
+        assertThat(result.source()).isEqualTo("github_api");
+        assertThat(result.evidence()).containsExactly("PR #24 em estado open.");
+        assertThat(authorization.get()).isEqualTo("Bearer test-token");
+    }
+
+    @Test
     void fallsBackWhenGitHubReturnsAnError() {
         server.createContext("/repos/acme/catalog-api/pulls/42", exchange -> writeJson(exchange, 503, "{}"));
         server.start();

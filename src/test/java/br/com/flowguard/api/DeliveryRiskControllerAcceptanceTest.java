@@ -42,6 +42,19 @@ class DeliveryRiskControllerAcceptanceTest {
     }
 
     @Test
+    void acceptsGitHubUrlRepositoryThroughHttpApi() throws Exception {
+        perform(new DeliverySignal(
+                        "https://github.com/gvmertens/flowguard",
+                        "24",
+                        "Ajusta mensagem de validação do catálogo sem alterar fluxo crítico.",
+                        List.of("Tests passed", "Coverage 82%"),
+                        List.of("catalog")))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.status").value("ROUTED"))
+                .andExpect(jsonPath("$.risk").value("LOW"));
+    }
+
+    @Test
     void requestsHumanApprovalForCriticalDeliveryThroughHttpApi() throws Exception {
         perform(new DeliverySignal(
                         "acme/billing-api",
