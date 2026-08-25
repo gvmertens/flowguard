@@ -45,6 +45,8 @@ mvn test
 mvn spring-boot:run
 ```
 
+Depois de iniciar, acesse `http://localhost:8080` para usar a interface web simples. Ela permite carregar cenários prontos, chamar a API real e visualizar status, risco, aprovação humana, latência e JSON completo da resposta.
+
 Sem chave de IA, mantenha `FLOWGUARD_AI_ENABLED=false`; o classificador determinístico permite reproduzir todos os cenários. Para ativar modelo, defina `OPENAI_API_KEY`, `FLOWGUARD_MODEL` e `FLOWGUARD_AI_ENABLED=true`. Nenhuma credencial deve entrar no Git.
 
 Exemplo de requisição:
@@ -105,6 +107,7 @@ Evidências principais:
 | Requisito | Evidência |
 | --- | --- |
 | Escopo e arquitetura | [docs/PROJECT_CHARTER.md](docs/PROJECT_CHARTER.md), [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) |
+| Frontend de demonstração | [index.html](src/main/resources/static/index.html), [FrontendResourceTest.java](src/test/java/br/com/flowguard/api/FrontendResourceTest.java) |
 | Grafo LangGraph4j | [DeliveryRiskService.java](src/main/java/br/com/flowguard/application/DeliveryRiskService.java), [FlowGuardState.java](src/main/java/br/com/flowguard/application/FlowGuardState.java) |
 | Tool/API GitHub | [GitHubPullRequestClient.java](src/main/java/br/com/flowguard/infrastructure/GitHubPullRequestClient.java), [PR #12](https://github.com/gvmertens/flowguard/pull/12) |
 | Memória/RAG | [docs/RAG_CONTEXT.md](docs/RAG_CONTEXT.md), [RepositoryContextService.java](src/main/java/br/com/flowguard/application/RepositoryContextService.java) |
