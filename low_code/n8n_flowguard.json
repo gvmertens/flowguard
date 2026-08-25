@@ -1,0 +1,21 @@
+{
+  "name": "FlowGuard - alerta de entrega",
+  "nodes": [
+    {
+      "parameters": {"httpMethod": "POST", "path": "flowguard-risk", "responseMode": "onReceived"},
+      "name": "Receber evento FlowGuard",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [300, 300]
+    },
+    {
+      "parameters": {"resource": "issue", "operation": "create", "title": "=FlowGuard {{$json.body.correlationId}}", "body": "=Risco: {{$json.body.risk}}"},
+      "name": "Criar Issue no GitHub",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [540, 300]
+    }
+  ],
+  "connections": {"Receber evento FlowGuard": {"main": [[{"node": "Criar Issue no GitHub", "type": "main", "index": 0}]]}}
+}
+
