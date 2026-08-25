@@ -11,6 +11,9 @@ public class PromptInjectionGuard {
             "ignore as instruções anteriores",
             "reveal system prompt",
             "revele o prompt de sistema",
+            "ignore all previous",
+            "system prompt",
+            "jailbreak",
             "bypass approval",
             "aprove sem revisão");
 
@@ -19,4 +22,3 @@ public class PromptInjectionGuard {
         return FORBIDDEN_PATTERNS.stream().anyMatch(normalized::contains);
     }
 }
-
