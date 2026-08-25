@@ -23,6 +23,12 @@ POST /api/v1/delivery-risk/assess
 
 O grafo é implementado com LangGraph4j, compartilhando `FlowGuardState` entre nodes e usando `START`, `END`, edges explícitas, ramificação condicional e duas consultas paralelas. A execução termina sempre em uma decisão; não há ciclo de retry sem limite.
 
+## Classificação da solução
+
+O FlowGuard é um sistema híbrido. A parte agêntica organiza o fluxo, recupera contexto, consulta tools e produz uma avaliação estruturada de risco. A parte determinística da aplicação, implementada em Java, valida entradas, bloqueia prompt injection, controla side effects e decide os limites de autonomia.
+
+Essa separação é intencional: o modelo pode classificar e explicar, mas não aprova merge, não ignora regras de segurança e não executa ações externas sem a política permitir.
+
 ## Tecnologias
 
 - Java 21, Spring Boot 4.1 e Maven
@@ -72,6 +78,12 @@ mvn -DskipTests package
 ```
 
 Os testes E2E cobrem rota normal, risco alto com aprovação humana e prompt injection. Veja [docs/qa/AI_CODE_REVIEW.md](docs/qa/AI_CODE_REVIEW.md), [docs/evidencias/DEVOPS_ANALYSIS.md](docs/evidencias/DEVOPS_ANALYSIS.md) e [docs/LOW_CODE.md](docs/LOW_CODE.md).
+
+## Análise crítica e limitações
+
+Durante o desenvolvimento, a criação dos testes de aceitação revelou dois ajustes importantes: o DTO de entrada precisava ser serializável para circular pelo estado do LangGraph4j, e o classificador determinístico precisava ser ativado explicitamente quando `FLOWGUARD_AI_ENABLED=false`. Esses achados foram incorporados ao código e documentados em [docs/qa/AI_CODE_REVIEW.md](docs/qa/AI_CODE_REVIEW.md) e [docs/prompts/system-prompt.md](docs/prompts/system-prompt.md).
+
+As principais limitações atuais são o RAG local com corpus pequeno, a ausência de persistência histórica em banco vetorial e o uso de uma política simples de risco. Evoluções naturais seriam persistir avaliações por squad, ampliar o corpus com ADRs reais, adicionar métricas Prometheus e transformar a aprovação humana em um fluxo explícito de ChatOps.
 
 ## Entrega
 
