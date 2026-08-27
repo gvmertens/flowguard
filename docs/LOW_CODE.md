@@ -16,3 +16,12 @@ Execução realizada em 2026-08-25 com o workflow publicado no n8n e credencial 
 - Resultado do FlowGuard: `status=ROUTED`, `risk=LOW`, `requiresHumanApproval=false`.
 - `correlationId`: `1786ab2b-e2a8-4379-9be9-b3d2c75f90e3`.
 - Evidência observável criada pelo n8n: Issue #18 no repositório `gvmertens/flowguard`, título `FlowGuard 1786ab2b-e2a8-4379-9be9-b3d2c75f90e3`.
+
+## Evidência adicional via frontend
+
+Execução realizada a partir da interface web do FlowGuard em `http://localhost:8080`, usando o cenário de fluxo principal. A aplicação local foi iniciada com `LOW_CODE_WEBHOOK_URL` apontando para a Production URL do workflow publicado no n8n.
+
+- Entrada: cenário `ROUTED/LOW`, com PR real do repositório e CI sem falhas.
+- Resultado esperado no backend: `status=ROUTED`, `risk=LOW`, `requiresHumanApproval=false`.
+- Resultado externo: o n8n recebeu o evento e criou a [Issue #29](https://github.com/gvmertens/flowguard/issues/29) no repositório `gvmertens/flowguard`.
+- Evidência pública: título da Issue contém o `correlationId` da execução e o corpo registra `Risco: LOW`.

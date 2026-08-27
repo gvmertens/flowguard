@@ -61,6 +61,8 @@ curl -X POST http://localhost:8080/api/v1/delivery-risk/assess -H "Content-Type:
 2. **Risco alto:** alteração em `payment`/`auth` com falha no CI resulta em `PENDING_HUMAN_APPROVAL`; nenhum webhook é chamado.
 3. **Entrada adversarial:** texto que tenta ignorar instruções resulta em `BLOCKED` antes da consulta GitHub ou do modelo.
 
+Para uma demonstração com rastreabilidade completa, use os cenários baseados em branches e PRs reais descritos em [docs/DEMO_BRANCHES.md](docs/DEMO_BRANCHES.md).
+
 ## Segurança, memória e observabilidade
 
 - Segredos são configurados apenas por ambiente.
@@ -100,7 +102,8 @@ Links centrais para avaliação e rastreabilidade:
 | Issues/Kanban | [Backlog rastreável](https://github.com/gvmertens/flowguard/issues?q=is%3Aissue) |
 | Professor colaborador | [wangsouza](https://github.com/wangsouza) com permissão `read` |
 | Roteiro de vídeo | [docs/VIDEO_SCRIPT.md](docs/VIDEO_SCRIPT.md) |
-| Vídeo | Pendente de gravação e upload não listado no YouTube |
+| Guia de branches para demo | [docs/DEMO_BRANCHES.md](docs/DEMO_BRANCHES.md) |
+| Vídeo | [Apresentação do FlowGuard](https://youtu.be/fqjtfDGNpTM) |
 
 Evidências principais:
 
@@ -108,6 +111,7 @@ Evidências principais:
 | --- | --- |
 | Escopo e arquitetura | [docs/PROJECT_CHARTER.md](docs/PROJECT_CHARTER.md), [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) |
 | Frontend de demonstração | [index.html](src/main/resources/static/index.html), [FrontendResourceTest.java](src/test/java/br/com/flowguard/api/FrontendResourceTest.java) |
+| Cenários com branches reais | [docs/DEMO_BRANCHES.md](docs/DEMO_BRANCHES.md), [PR #26](https://github.com/gvmertens/flowguard/pull/26), [PR #16](https://github.com/gvmertens/flowguard/pull/16), [PR #14](https://github.com/gvmertens/flowguard/pull/14) |
 | Grafo LangGraph4j | [DeliveryRiskService.java](src/main/java/br/com/flowguard/application/DeliveryRiskService.java), [FlowGuardState.java](src/main/java/br/com/flowguard/application/FlowGuardState.java) |
 | Tool/API GitHub | [GitHubPullRequestClient.java](src/main/java/br/com/flowguard/infrastructure/GitHubPullRequestClient.java), [PR #12](https://github.com/gvmertens/flowguard/pull/12) |
 | Memória/RAG | [docs/RAG_CONTEXT.md](docs/RAG_CONTEXT.md), [RepositoryContextService.java](src/main/java/br/com/flowguard/application/RepositoryContextService.java) |
@@ -115,4 +119,4 @@ Evidências principais:
 | Observabilidade | [AuditService.java](src/main/java/br/com/flowguard/application/AuditService.java), [PR #11](https://github.com/gvmertens/flowguard/pull/11) |
 | QA com IA e testes | [docs/qa/AI_CODE_REVIEW.md](docs/qa/AI_CODE_REVIEW.md), [PR #15](https://github.com/gvmertens/flowguard/pull/15) |
 | CI e análise de anomalias | [docs/evidencias/DEVOPS_ANALYSIS.md](docs/evidencias/DEVOPS_ANALYSIS.md), [PR #16](https://github.com/gvmertens/flowguard/pull/16) |
-| Automação low-code n8n | [docs/LOW_CODE.md](docs/LOW_CODE.md), [PR #19](https://github.com/gvmertens/flowguard/pull/19), [Issue #18 criada pelo n8n](https://github.com/gvmertens/flowguard/issues/18) |
+| Automação low-code n8n | [docs/LOW_CODE.md](docs/LOW_CODE.md), [PR #19](https://github.com/gvmertens/flowguard/pull/19), [Issue #18](https://github.com/gvmertens/flowguard/issues/18) e [Issue #29](https://github.com/gvmertens/flowguard/issues/29) criadas pelo n8n |
